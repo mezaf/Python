@@ -9,6 +9,7 @@ hdr = {
 req = urllib.request.Request(site, headers=hdr)
 
 date_tag = datetime.datetime.now().strftime('_%Y%m%d')
+timestamp_tag = datetime.datetime.now().strftime('_%Y%m%d%H%M%S')
 
 page = urllib.request.urlopen(req)
 
@@ -17,5 +18,5 @@ string_response = page.read().decode('utf-8')
 coins_json = json.loads(string_response)
 
 coins_data =pandas.DataFrame()
-coins_data = pandas.DataFrame.from_dict(coins_json['coins'],orient='index')
-coins_data.to_csv('coins_data'+date_tag,sep=',') 
+coins_data = pandas.DataFrame.from_dict(coins_json['coins'],orient='index').reset_index().rename(columns={'index':'coin'})
+coins_data.to_csv('coins_data'+timestamp_tag,sep=',',index=False)
