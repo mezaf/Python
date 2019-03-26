@@ -12,8 +12,6 @@ for i in range(len(data_set['ymd'])):
 	data_set['ymd'].sort()
 	list_set = data_set['ymd']
 	if init_val:
-		if init_val == 20191115:
-			print init_val, range_set
 		if list_set[i] - list_set[i-1] > 1 and not last_val:
 			last_val = list_set[i-1]
 			range_set[init_val] = [init_val,init_val]
@@ -34,4 +32,4 @@ for i in range(len(data_set['ymd'])):
 		range_set[init_val] = [init_val,init_val]
 
 for key,val in range_set.items():
-	print val[0],val[1]
+	print (val[0],val[1])
