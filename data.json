@@ -1,0 +1,19 @@
+[{
+    "name":{
+        "first":"Fernando",
+        "last":"Meza"
+    },
+    "hobbys":["futbol","beisbol"]
+},
+{
+    "person":[{
+        "name":{
+        "first":"Maria",
+        "last":"Gonzalez"
+        },
+        "name":{
+        "first":"Carolina",
+        "last":"Meza"
+        }
+    }]
+}]
