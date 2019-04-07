@@ -25,7 +25,17 @@ def check_json(obj,json_list=[]):
 def multiple_json(obj,json_list=[]):
     for data in obj:
         # json_list[obj.index(data)] = flat_json(data)
-        json_list.append(upper_flat_json(data))
+        # print(obj)
+        json_list.append(upper_flat_json(data).copy())
+        data = json.loads(json.dumps(json_list.pop()))
+        for k,v in data.items():
+            try:
+                multiple_json(json.loads(v),json_list)
+            except:
+                if isinstance(v,list):
+                    for i in v:
+                        data[k] = i
+                        json_list.append(data.copy())
     return json_list
 
 with open('data.json', 'r') as file:
