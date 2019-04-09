@@ -1,5 +1,5 @@
 import json
-def upper_flat_json(obj):
+def upper_flat_json(obj,json_list):
     def flat_json(obj, new_obj={}, keys=[]):
         for key, value in obj.items():
             if isinstance(value, dict):
@@ -9,25 +9,31 @@ def upper_flat_json(obj):
         return new_obj
     return flat_json(obj)
 
-def check_json(obj,json_list=[]):
+def check_json(obj,keys=[],json_list=[]):
     try:
         data = json.loads(obj)
         if isinstance(data,dict):
             data = flat_json(data)
         else:
-            data = multiple_json(data)
+            data = multiple_json(data,keys)
     except:
-        # print(json_list)
-        for i in json_list:
-            print(i)
+        print('error grave')
+        # for i in json_list:
+        #     print(i)
     return data 
 
-def multiple_json(obj,json_list=[]):
+def multiple_json(obj,keys,json_list=[]):
     for data in obj:
         # json_list[obj.index(data)] = flat_json(data)
-        json_list.append(upper_flat_json(data))
+        json_list.append(upper_flat_json(data,json_list,keys))
     return json_list
 
+def list_atts(obj, key,json_list=[]):
+    print (obj)
+    # for att in obj[key]:
+    #     obj[key] = att
+    #     json_list.append(obj)
+    # return json_list
 with open('data.json', 'r') as file:
-    # print(flat_keys(file.read()))
-    print(check_json(file.read()))
+    
+    print (asd_list)
