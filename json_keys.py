@@ -7,10 +7,8 @@ def upper_flat_json(obj,keys=[]):
                 new_obj = flat_json(obj[key], new_obj, keys + [key])
             else:
                 new_obj['_'.join(keys + [key])] = value
-        print(new_obj)
         return new_obj
     return flat_json(obj)
-
 
 def check_json(obj,json_list=[], data=[]):
     try:
@@ -18,31 +16,25 @@ def check_json(obj,json_list=[], data=[]):
         if isinstance(data,dict):
             data = flat_json(data)
         else:
-            data = multiple_json(data,keys)
+            data = multiple_json(data)
     except:
         for i in json_list:
             data = 'error'
     return data 
 
-def multiple_json(obj,keys,json_list=[]):
+def multiple_json(obj,json_list=[]):
     for data in obj:
         json_list.append(upper_flat_json(data).copy())
         data = json.loads(json.dumps(json_list.pop()))
         for k,v in data.items():
             if isinstance(v, list):
-                # print('is a list')
+                print('is a list')
                 for i in v:
                     # print(i)
                     data[k] = i
                     json_list.append(data.copy())
     return json_list
 
-def list_atts(obj, key,json_list=[]):
-    print (obj)
-    # for att in obj[key]:
-    #     obj[key] = att
-    #     json_list.append(obj)
-    # return json_list
 with open('data.json', 'r') as file:
     i = True
     data = (check_json(file.read()))
@@ -50,10 +42,13 @@ with open('data.json', 'r') as file:
         i = False
         for data_set in data:
             for k,v in data_set.items():
-                if isinstance(v, (list,dict)):
+                if isinstance(v, list):
+                    print(v)
                     data = check_json(json.dumps(data))
                     i = True
                     break
-                # elif isinstance(v, dict):
-                #     data = multiple_json(data)
-                #     i = True
+                elif isinstance(v, dict):
+                    print('is a dict')
+                    data.append(upper_flat_json(data.pop(data.index(data_set))))
+                    i = True
+    print(data)
