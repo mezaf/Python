@@ -1,19 +1,8 @@
 [{
-    "name":{
-        "first":"Fernando",
-        "last":"Meza"
-    },
-    "hobbys":["futbol","beisbol"]
-},
-{
-    "person":[{
-        "name":{
-        "first":"Maria",
-        "last":"Gonzalez"
-        },
-        "name":{
-        "first":"Carolina",
-        "last":"Meza"
-        }
-    }]
+"REPORTING_YEAR":2018,
+"REPORTING_QUARTER":4,
+"quarter_start_date":20181201,
+"quarter_end_date":20190301,
+"bias_snapshot": ["PostInception","QuarterEnd"],
+"bias_types":["Security","Sector","Industry"]
 }]

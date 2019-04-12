@@ -19,7 +19,6 @@ with open('data.json', 'r') as file:
 			for obj in data:
 				if isinstance(obj,dict):
 					json_list.append(flat_json(obj))
-
 		else:
 			json_list.append(flat_json(json.loads(data)))
 	except:
