@@ -1,8 +1,9 @@
-[{
+[{"ppa":{
 "REPORTING_YEAR":2018,
 "REPORTING_QUARTER":4,
 "quarter_start_date":20181201,
 "quarter_end_date":20190301,
 "bias_snapshot": ["PostInception","QuarterEnd"],
-"bias_types":["Security","Sector","Industry"]
-}]
+"bias_types":["Security","Sector","Industry"],
+"added_data":[{"First":"Fernando","last_name":"Meza"},{"First":"David","last_name":"Padilla"}]
+}}]
