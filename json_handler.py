@@ -8,7 +8,7 @@ def upper_flat_json(obj,keys=[]):
 			if isinstance(value, dict):
 				new_obj = flat_json(obj[key], new_obj, keys + [key])
 			else:
-				new_obj['_'.join(keys + [key])] = value
+				new_obj['.'.join(keys + [key])] = value
 		return new_obj
 	return flat_json(obj)
 
