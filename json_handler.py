@@ -1,16 +1,4 @@
 import json
-from copy import deepcopy
-
-
-def upper_flat_json(obj,keys=[]):
-	def flat_json(obj, new_obj={}, keys=[]):
-		for key, value in obj.items():
-			if isinstance(value, dict):
-				new_obj = flat_json(obj[key], new_obj, keys + [key])
-			else:
-				new_obj['.'.join(keys + [key])] = value
-		return new_obj
-	return flat_json(obj)
 
 def read_json(file=None,json_new_obj=[]):
 	if file:
@@ -23,6 +11,16 @@ def read_json(file=None,json_new_obj=[]):
 		return 'No JSON provided'
 	return data
 
+def upper_flat_json(obj,keys=[]):
+	def flat_json(obj, new_obj={}, keys=[]):
+		for key, value in obj.items():
+			if isinstance(value, dict):
+				new_obj = flat_json(obj[key], new_obj, keys + [key])
+			else:
+				new_obj['.'.join(keys + [key])] = value
+		return new_obj
+	return flat_json(obj)
+
 def handle_list(list_obj,list_new_obj=[]):
 	for key, value in list_obj.items():
 		if isinstance(value, list):
@@ -34,7 +32,7 @@ def handle_list(list_obj,list_new_obj=[]):
 			list_new_obj.append(list_obj)
 	return list_new_obj
 
-def validation(val_obj,final_obj=[],types=[]):
+def validation(val_obj):
 	i = True
 	while i:
 		i = False
