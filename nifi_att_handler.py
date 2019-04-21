@@ -22,17 +22,6 @@ def upper_flat_json(obj,keys=[]):
         return new_obj
     return flat_json(obj)
 
-def read_json(file=None,json_new_obj=[]):
-    if file:
-        try:
-            obj = json.loads(file.read())
-        except:
-            obj = json.loads(json.dumps(file.read()))
-        data = validation(obj)
-    else:
-        return 'No JSON provided'
-    return data
-
 def handle_list(list_obj,list_new_obj=[]):
     for key, value in list_obj.items():
         if isinstance(value, list):
@@ -65,6 +54,17 @@ def validation(val_obj,final_obj=[],types=[]):
             elif alpha == len(data):
                 val_obj.append(data.copy())
     return(val_obj)
+
+def read_json(file=None,json_new_obj=[]):
+    if file:
+        try:
+            obj = json.loads(file.read())
+        except:
+            obj = json.loads(json.dumps(file.read()))
+        data = validation(obj)
+    else:
+        return 'No JSON provided'
+    return data
 
 cat = subprocess.Popen(['hdfs','dfs','-cat','/user/FernandM/Metadata/tester.json'], stdout=subprocess.PIPE)
 data = read_json(cat.stdout.read())
